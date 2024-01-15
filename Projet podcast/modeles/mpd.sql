@@ -1,0 +1,46 @@
+-- Création de la base de données
+CREATE DATABASE IF NOT EXISTS podcasts;
+
+-- Utilisation de la base de données
+USE podcasts;
+
+-- Création de la table "categories"
+CREATE TABLE IF NOT EXISTS Categories (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  nom          VARCHAR(100) NOT NULL,
+  created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Création de la table "commentaires"
+CREATE TABLE IF NOT EXISTS commentaires (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  corps       TEXT NOT NULL,
+  created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (podcast_id) REFERENCES categories (id) ON DELETE SET NULL
+  FOREIGN KEY (util_id) REFERENCES categories (id) ON DELETE SET NULL
+);
+
+-- Création de la table "utilisateurs"
+CREATE TABLE IF NOT EXISTS utilisateurs (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  nom             VARCHAR(100) NOT NULL,
+  photo           VARCHAR(150) NOT NULL,
+  created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+);
+
+-- Création de la table "Podcasts"
+CREATE TABLE IF NOT EXISTS podcasts (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  titre         VARCHAR(100) NOT NULL,
+  corps         TEXT NOT NULL,
+  extrait       VARCHAR(300) NOT NULL,
+  fichier_audio VARCHAR(150),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  id_categorie BIGINT UNSIGNED,
+  id_comment BIGINT UNSIGNED,
+  FOREIGN KEY (id_categorie) REFERENCES categories (id) ON DELETE SET NULL
+);

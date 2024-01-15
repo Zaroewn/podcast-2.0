@@ -1,0 +1,5 @@
+CATEGORIES: num_category, nom, created_at, updated_at
+EST_ASSOCIER, 01 PODCASTS, 0N CATEGORIES
+PODCASTS: num_podcast, titre, corps, extrait, fichier_audio, created_at, updated_at
+AURA, 0N PODCASTS, 11 COMMENTAIRES
+COMMENTAIRES: num_comment, corps, created_at, updated_at, podcast_id

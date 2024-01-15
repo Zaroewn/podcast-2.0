@@ -1,0 +1,8 @@
+%%mocodo
+:
+CATEGORIES: num_category, nom, created_at, updated_at
+:
+PODCASTS: num_podcast, titre, corps, extrait, fichier_audio, created_at, updated_at, #num_category > CATEGORIES > num_category
+:
+COMMENTAIRES: num_comment, corps, created_at, updated_at, podcast_id, #num_podcast > PODCASTS > num_podcast
+:
